@@ -5,6 +5,7 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
+  Image,
 } from 'react-native';
 
 class ShowRepositoryScreen extends Component {
@@ -17,22 +18,33 @@ class ShowRepositoryScreen extends Component {
   }
 
   componentDidMount() {
-    fetch(`https://api.github.com/users/${this.props.gitHubUserName}/repos`)
+    fetch(`https://api.github.com/users/${this.props.gitHubUserName}/repos?client_id=59ee05aba00e83d55297&client_secret=d4c8b19042acc8a1aab4a7d7c4eac60eb101abf6`)
       .then((response) => response.json())
       .then((repositories) => {
-        console.log(repositories);
-        this.setState({repositories})
+        if (repositories) {
+          this.setState({repositories})
+        }
+      })
+      .catch((error) => {
+        console.log(error);
       });
   }
 
   render() {
+    console.log(this.state.repositories)
+
     return <View style={styles.container}>
-      <View style={styles.repositories}>
+      <View style={styles.content}>
         <Text style={styles.userName}>
           {this.props.gitHubUserName}
         </Text>
         <ScrollView>
-          {this.state.repositories.map((repository) => {
+          <Image
+              source={{uri: this.state.repositories[0] && this.state.repositories[0].owner.avatar_url}}
+              style={styles.userProfileImage}
+          />
+
+          {this.state.repositories && this.state.repositories.map((repository) => {
             return <View style={styles.repository}>
               <Text>{repository.name}</Text>
               <Text>{repository.stargazers_count}</Text>
@@ -74,7 +86,7 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     textAlign: 'center',
   },
-  repositories: {
+  content: {
     flex: 1,
     paddingHorizontal: 16,
   },
@@ -87,7 +99,13 @@ const styles = StyleSheet.create({
   userName: {
     textAlign: 'center',
     fontSize: 20,
-  }
+  },
+  userProfileImage: {
+    height: 150,
+    width: 150,
+    borderRadius: 75,
+    alignSelf: 'center',
+  },
 });
 
 export default ShowRepositoryScreen;
