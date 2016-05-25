@@ -3,7 +3,7 @@ import {
   AppRegistry,
   Navigator
 } from 'react-native';
-import WelcomeScreen from './WelcomeScreen.ios';
+import WelcomeScreen from './ChooseRepositoryScreen.ios.js';
 import ShowRepositoryScreen from './ShowRepositoryScreen';
 
 class GithubRepo extends Component {
