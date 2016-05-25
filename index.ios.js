@@ -21,7 +21,7 @@ class GithubRepo extends Component {
               case 'show_repository_screen':
                 return <ShowRepositoryScreen
                   navigator={navigator}
-                  gitHubRepository={route.gitHubRepository}
+                  gitHubUserName={route.gitHubUserName}
                 />
             }
           }}

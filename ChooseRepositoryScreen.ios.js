@@ -14,7 +14,7 @@ class WelcomeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      gitHubRepository: ''
+      gitHubUserName: ''
     }
   }
 
@@ -22,10 +22,10 @@ class WelcomeScreen extends Component {
     return <View style={styles.container}>
       <View style={styles.form}>
         <TextInput
-            style={styles.repositoryName}
+            style={styles.userName}
             placeholder='Enter github repository'
-            onChangeText={(gitHubRepository) => this.setState({gitHubRepository})}
-            value={this.state.gitHubRepository}
+            onChangeText={(gitHubUserName) => this.setState({gitHubUserName})}
+            value={this.state.gitHubUserName}
         >
         </TextInput>
         <TouchableOpacity
@@ -41,7 +41,7 @@ class WelcomeScreen extends Component {
   }
 
   _onPressGoButton() {
-    this.props.navigator.push({id: 'show_repository_screen', gitHubRepository: this.state.gitHubRepository});
+    this.props.navigator.push({id: 'show_repository_screen', gitHubUserName: this.state.gitHubUserName});
   }
 }
 
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'stretch',
   },
-  repositoryName: {
+  userName: {
     flex: 1,
     height: 40,
     fontSize: 20,
