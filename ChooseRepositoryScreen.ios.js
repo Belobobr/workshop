@@ -22,7 +22,7 @@ class WelcomeScreen extends Component {
     return <View style={styles.container}>
       <View style={styles.form}>
         <TextInput
-            style={styles.repository}
+            style={styles.repositoryName}
             placeholder='Enter github repository'
             onChangeText={(gitHubRepository) => this.setState({gitHubRepository})}
             value={this.state.gitHubRepository}
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'stretch',
   },
-  repository: {
+  repositoryName: {
     flex: 1,
     height: 40,
     fontSize: 20,

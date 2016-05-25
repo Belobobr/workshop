@@ -6,7 +6,16 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+
 class ShowRepositoryScreen extends Component {
+
+  componentDidMount() {
+    fetch(`https://api.github.com/users/${this.props.gitHubRepository}/repos`)
+      .then((response) => response.json())
+      .then((repositories) => {
+        console.log(repositories)
+      });
+  }
 
   render() {
     return <View style={styles.container}>
